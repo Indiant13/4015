@@ -29,6 +29,11 @@ export default async function PublicStartPage() {
         </div>
       </section>
 
+      <section className="mx-auto w-full max-w-6xl px-4 pb-2 sm:px-6 lg:px-8">
+        <p className="text-xs uppercase tracking-[0.2em] text-[var(--color-text-secondary)]">Global Community</p>
+        <h2 className="mt-1 text-2xl font-semibold text-[var(--color-text-primary)] sm:text-3xl">Ready to Play Today</h2>
+      </section>
+
       <PlayerPromoGrid players={players} />
     </main>
   );

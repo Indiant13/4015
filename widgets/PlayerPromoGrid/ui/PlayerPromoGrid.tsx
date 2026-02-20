@@ -27,27 +27,23 @@ export function PlayerPromoGrid({ players }: PlayerPromoGridProps) {
     }));
   };
 
+  const closeCard = (playerId: string) => {
+    setFlippedById((prev) => ({
+      ...prev,
+      [playerId]: false,
+    }));
+  };
+
   return (
     <section aria-label="Registered players showcase" className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
-      <div className="mb-5 flex items-end justify-between">
-        <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-[var(--color-text-secondary)]">
-            Global Community
-          </p>
-          <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] sm:text-3xl">
-            Registered Players
-          </h2>
-        </div>
-      </div>
-
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 sm:gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {players.map((player) => {
           const isFlipped = Boolean(flippedById[player.id]);
 
           return (
-            <article key={player.id} className="w-full [perspective:1000px]">
+            <article key={player.id} className="w-full">
               <div
-                className={`relative min-h-[260px] w-full rounded-xl transition-transform duration-500 [transform-style:preserve-3d] ${
+                className={`relative w-full aspect-square [perspective:1000px] transition-transform duration-500 [transform-style:preserve-3d] ${
                   isFlipped ? "[transform:rotateY(180deg)]" : "[transform:rotateY(0deg)]"
                 }`}
               >
@@ -55,7 +51,7 @@ export function PlayerPromoGrid({ players }: PlayerPromoGridProps) {
                   <button
                     type="button"
                     onClick={() => toggleCard(player.id)}
-                    className="relative block aspect-square w-full"
+                    className="relative block h-full w-full"
                     aria-label={`Flip ${player.name} card`}
                   >
                     <Image
@@ -66,19 +62,47 @@ export function PlayerPromoGrid({ players }: PlayerPromoGridProps) {
                       className="object-cover"
                     />
                   </button>
-                  <div className="px-3 py-3">
-                    <p className="truncate text-sm font-medium text-[var(--color-text-primary)]">{player.name}</p>
-                    <p className="truncate text-xs text-[var(--color-text-secondary)]">{player.country}</p>
-                  </div>
                 </div>
 
                 <div className="absolute inset-0 flex items-center justify-center rounded-xl border border-clay-500 bg-clay-100 p-4 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                  <Link
-                    href="/register?intent=challenge"
-                    className="rounded-xl bg-tennis-500 px-4 py-3 text-sm font-semibold text-clay-700 transition hover:scale-105"
+                  <button
+                    type="button"
+                    onClick={() => closeCard(player.id)}
+                    className="absolute top-3 right-3 z-10 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-clay-300 text-sm font-semibold text-clay-700"
+                    aria-label={`Close ${player.name} card`}
                   >
-                    Challenge to Match
-                  </Link>
+                    X
+                  </button>
+
+                  <div className="flex flex-col items-center justify-center gap-3">
+                    <Link
+                      href="/register?intent=challenge"
+                      className="rounded-xl bg-tennis-500 px-4 py-3 text-sm font-semibold text-clay-700 transition hover:scale-105"
+                    >
+                      Challenge to Match
+                    </Link>
+                    <Link
+                      href="/register?intent=chat"
+                      className="rounded-xl bg-clay-500 px-6 py-2 text-sm font-semibold text-white transition hover:scale-105"
+                    >
+                      Chat
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-full rounded-b-xl bg-clay-100 px-3 py-2">
+                <p className="truncate text-sm font-medium text-clay-700">{player.name}</p>
+                <div className="mt-1 flex items-center justify-between">
+                  <p className="truncate text-xs text-clay-500">{player.country}</p>
+                  <div className="flex items-center gap-1" aria-label={`Rating: ${player.rating} out of 5`}>
+                    {Array.from({ length: player.rating }).map((_, index) => (
+                      <span key={`${player.id}-rating-${index}`} className="relative h-3 w-3 rounded-full bg-tennis-500">
+                        <span className="absolute -left-[1px] top-[1px] h-2.5 w-1.5 rounded-full border border-gray-400 border-r-0" />
+                        <span className="absolute -right-[1px] top-[1px] h-2.5 w-1.5 rounded-full border border-gray-400 border-l-0" />
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </article>

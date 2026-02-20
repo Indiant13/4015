@@ -4,6 +4,7 @@
   avatarUrl: string;
   country: string;
   city: string;
+  rating: number;
 };
 
 export type PlayerPublicProfile = Player;
