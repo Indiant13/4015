@@ -12,10 +12,10 @@ export function Header({ user }: HeaderProps) {
     <header className="border-b border-[var(--color-border-soft)] bg-[var(--color-surface-base)]/90 backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
+          <DiscoveryMenu />
           <Link href="/" className="text-lg font-semibold tracking-wide text-[var(--color-text-primary)]">
             40:15
           </Link>
-          <DiscoveryMenu />
         </div>
 
         {user ? (

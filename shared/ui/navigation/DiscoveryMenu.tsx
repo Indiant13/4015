@@ -1,7 +1,8 @@
 ﻿"use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { KebabIcon } from "../icons/KebabIcon";
 
 const DISCOVERY_LINKS = [
   { href: "/players", label: "Players in Spain" },
@@ -13,18 +14,41 @@ const DISCOVERY_LINKS = [
 
 export function DiscoveryMenu() {
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handlePointerOutside = (event: MouseEvent | TouchEvent) => {
+      const target = event.target as Node | null;
+
+      if (!target) {
+        return;
+      }
+
+      if (menuRef.current && !menuRef.current.contains(target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handlePointerOutside);
+    document.addEventListener("touchstart", handlePointerOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerOutside);
+      document.removeEventListener("touchstart", handlePointerOutside);
+    };
+  }, []);
 
   return (
-    <div className="relative">
+    <div ref={menuRef} className="relative">
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className="inline-flex items-center gap-2 rounded-xl border border-clay-500 bg-clay-100 px-4 py-2 text-sm font-medium text-[var(--color-text-primary)] transition hover:scale-105"
+        className="flex h-10 w-10 items-center justify-center rounded-xl border border-clay-500 transition hover:bg-clay-100"
         aria-expanded={isOpen}
         aria-haspopup="menu"
+        aria-label="Open discovery navigation"
       >
-        Discover
-        <span aria-hidden="true" className="text-xs">▼</span>
+        <KebabIcon />
       </button>
 
       {isOpen ? (
