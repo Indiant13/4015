@@ -1,5 +1,4 @@
 ﻿import { getPublicPlayers } from "../../services/player/application/getPublicPlayers";
-import { DiscoveryNavigation } from "../../widgets/DiscoveryNavigation";
 import { PlayerPromoGrid } from "../../widgets/PlayerPromoGrid";
 
 export default async function PublicStartPage() {
@@ -17,7 +16,6 @@ export default async function PublicStartPage() {
         </p>
       </section>
 
-      <DiscoveryNavigation />
       <PlayerPromoGrid players={players} />
     </main>
   );

@@ -1,6 +1,7 @@
 ﻿import Image from "next/image";
 import Link from "next/link";
 import type { AuthUserPublic } from "../../../entities/auth/types/authUserPublic";
+import { DiscoveryMenu } from "../navigation/DiscoveryMenu";
 
 type HeaderProps = {
   user?: AuthUserPublic | null;
@@ -10,13 +11,11 @@ export function Header({ user }: HeaderProps) {
   return (
     <header className="border-b border-[var(--color-border-soft)] bg-[var(--color-surface-base)]/90 backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <Link href="/" className="text-lg font-semibold tracking-wide text-[var(--color-text-primary)]">
             40:15
           </Link>
-          <p className="hidden text-xs uppercase tracking-[0.2em] text-[var(--color-text-secondary)] sm:block">
-            Tennis Social Network
-          </p>
+          <DiscoveryMenu />
         </div>
 
         {user ? (
