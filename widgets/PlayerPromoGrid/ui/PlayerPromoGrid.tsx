@@ -15,11 +15,11 @@ export function PlayerPromoGrid({ players }: PlayerPromoGridProps) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 sm:gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {players.map((player) => (
           <article
             key={player.id}
-            className="group rounded-2xl border border-[var(--color-border-soft)] bg-[var(--color-surface-elevated)]"
+            className="group w-full overflow-hidden rounded-xl border border-[var(--color-border-soft)] bg-[var(--color-surface-elevated)]"
           >
             <div className="relative aspect-square">
               <Image
@@ -27,7 +27,7 @@ export function PlayerPromoGrid({ players }: PlayerPromoGridProps) {
                 alt={`${player.name} from ${player.country}`}
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
-                className="h-full w-full rounded-t-2xl object-cover transition-transform duration-300 group-hover:scale-105"
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
             </div>
             <div className="px-3 py-3">
