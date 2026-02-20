@@ -59,7 +59,6 @@ body {
 
 .clay-bg > * {
   position: relative;
-  z-index: 1;
 }
 
 .clay-bg::after {
