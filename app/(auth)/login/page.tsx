@@ -1,9 +1,8 @@
 ﻿"use client";
 
 import { useRouter } from "next/navigation";
-import RegisterFeature from "../../../features/register";
 
-export default function RegisterPage() {
+export default function LoginPage() {
   const router = useRouter();
 
   return (
@@ -17,7 +16,10 @@ export default function RegisterPage() {
         Back
       </button>
 
-      <RegisterFeature />
+      <section className="mx-auto w-full max-w-md rounded-2xl bg-clay-100 p-6 shadow-md">
+        <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">Login</h1>
+        <p className="mt-2 text-sm text-[var(--color-text-secondary)]">Login feature is not implemented yet.</p>
+      </section>
     </main>
   );
 }

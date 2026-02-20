@@ -27,3 +27,53 @@ body {
 body {
   min-height: 100vh;
 }
+
+.clay-bg {
+  position: relative;
+  background:
+    radial-gradient(circle at 40% 60%, rgba(0, 0, 0, 0.08), transparent 60%),
+    radial-gradient(circle at 70% 30%, rgba(0, 0, 0, 0.05), transparent 50%),
+    repeating-linear-gradient(
+      25deg,
+      rgba(0, 0, 0, 0.025) 0px,
+      rgba(0, 0, 0, 0.025) 2px,
+      transparent 2px,
+      transparent 12px
+    ),
+    linear-gradient(135deg, #c76b3c 0%, #b96033 40%, #c76b3c 100%);
+  background-blend-mode: multiply, overlay, soft-light;
+  isolation: isolate;
+}
+
+.clay-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='%23000000' fill-opacity='0.35'%3E%3Ccircle cx='8' cy='12' r='1'/%3E%3Ccircle cx='34' cy='22' r='1'/%3E%3Ccircle cx='61' cy='18' r='1'/%3E%3Ccircle cx='88' cy='29' r='1'/%3E%3Ccircle cx='114' cy='15' r='1'/%3E%3Ccircle cx='20' cy='48' r='1'/%3E%3Ccircle cx='49' cy='56' r='1'/%3E%3Ccircle cx='76' cy='44' r='1'/%3E%3Ccircle cx='103' cy='58' r='1'/%3E%3Ccircle cx='129' cy='50' r='1'/%3E%3Ccircle cx='14' cy='84' r='1'/%3E%3Ccircle cx='40' cy='92' r='1'/%3E%3Ccircle cx='67' cy='78' r='1'/%3E%3Ccircle cx='95' cy='94' r='1'/%3E%3Ccircle cx='122' cy='88' r='1'/%3E%3Ccircle cx='27' cy='120' r='1'/%3E%3Ccircle cx='55' cy='128' r='1'/%3E%3Ccircle cx='82' cy='116' r='1'/%3E%3Ccircle cx='109' cy='130' r='1'/%3E%3Ccircle cx='133' cy='122' r='1'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 140px 140px;
+  mix-blend-mode: multiply;
+  z-index: 0;
+}
+
+.clay-bg > * {
+  position: relative;
+  z-index: 1;
+}
+
+.clay-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.15;
+  background-image: repeating-radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.03) 0px,
+    transparent 1px
+  );
+  background-size: 4px 4px;
+  mix-blend-mode: multiply;
+  z-index: 0;
+}
