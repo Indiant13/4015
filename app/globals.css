@@ -1,0 +1,29 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg-clay: #c97d4c;
+  --color-surface-base: #f4e1cf;
+  --color-surface-elevated: #fff4e9;
+  --color-text-primary: #2f1f16;
+  --color-text-secondary: #6f4b38;
+  --color-border-soft: #d8b498;
+  --color-clay-100: #f4e1cf;
+  --color-clay-500: #c97d4c;
+  --color-tennis-500: #9dc74a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+}
